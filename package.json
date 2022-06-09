@@ -1,0 +1,24 @@
+{
+  "name": "cryptocurrency-indicators-notificator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chingizof/cryptocurrency-indicators-notificator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chingizof/cryptocurrency-indicators-notificator/issues"
+  },
+  "homepage": "https://github.com/chingizof/cryptocurrency-indicators-notificator#readme",
+  "keywords": [],
+  "dependencies": {
+    "@binance/connector": "^1.10.0",
+    "axios": "^0.27.2"
+  }
+}
