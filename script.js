@@ -1,14 +1,10 @@
 #! /usr/bin/env node
 const axios = require("axios");
 
+key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbHVlIjoiNjJhMWY1NDE2YzI4YjU1Y2Q1ZmQ3ZGJmIiwiaWF0IjoxNjU0NzgxMjQ5LCJleHAiOjMzMTU5MjQ1MjQ5fQ.N2LkEIWc5zu6bpQgN5uBmMKg5zhSoeVbrUC7nnRKkug"
 const options = {
   method: 'GET',
-  url: 'https://alpha-vantage.p.rapidapi.com/query',
-  params: {from_currency: 'BTC', function: 'CURRENCY_EXCHANGE_RATE', to_currency: 'USD'},
-  headers: {
-    'X-RapidAPI-Key': 'cc3c9af169msha0799c7002f9500p1ff86fjsn368908177a70',
-    'X-RapidAPI-Host': 'alpha-vantage.p.rapidapi.com'
-  }
+  url: `https://api.taapi.io/rsi?secret=${key}&exchange=binance&symbol=BTC/USDT&interval=1h`
 };
 
 axios.request(options).then(function (response) {
