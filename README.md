@@ -8,3 +8,6 @@ Alpha Vantage (rapidapi, 1 req/15sec, 500 requests/day) - https://rapidapi.com/a
 Taapi (best indicators) - https://taapi.io/indicators/relative-strength-index-rsi/
 
 Very best results, 200 requests/day - https://technical-analysis-api.com/documentation#tag/Strategy
+
+я не понимаю как работает RSI
+
