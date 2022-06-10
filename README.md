@@ -13,3 +13,4 @@ Very best results, 200 requests/day - https://technical-analysis-api.com/documen
 
 График Trading view - https://www.tradingview.com/HTML5-stock-forex-bitcoin-charting-library/
 
+Creating google extension - https://ankitkumar.dev/building-own-cheome-extension/
