@@ -9,5 +9,7 @@ Taapi (best indicators) - https://taapi.io/indicators/relative-strength-index-rs
 
 Very best results, 200 requests/day - https://technical-analysis-api.com/documentation#tag/Strategy
 
-я не понимаю как работает RSI
+я не понимаю как работает RSI на этом сайте
+
+График Trading view - https://www.tradingview.com/HTML5-stock-forex-bitcoin-charting-library/
 
