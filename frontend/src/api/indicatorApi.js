@@ -1,11 +1,9 @@
-#! /usr/bin/env node
-const axios = require("axios");
-
+import axios from 'axios'
 //key for taapi
-key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbHVlIjoiNjJhMWY1NDE2YzI4YjU1Y2Q1ZmQ3ZGJmIiwiaWF0IjoxNjU0NzgxMjQ5LCJleHAiOjMzMTU5MjQ1MjQ5fQ.N2LkEIWc5zu6bpQgN5uBmMKg5zhSoeVbrUC7nnRKkug" 
+let key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbHVlIjoiNjJhMWY1NDE2YzI4YjU1Y2Q1ZmQ3ZGJmIiwiaWF0IjoxNjU0NzgxMjQ5LCJleHAiOjMzMTU5MjQ1MjQ5fQ.N2LkEIWc5zu6bpQgN5uBmMKg5zhSoeVbrUC7nnRKkug" 
 //key for https://technical-analysis-api.com/dashboard
-key2 = "PWYAJJK4M7X7RHLD236XJCJWSIHKBRB35NZKTB6F2NY37M3Y"
-key3 = "OeAFFmMliFG5orCUuwAKQ8l4WWFQ67YX"
+let key2 = "PWYAJJK4M7X7RHLD236XJCJWSIHKBRB35NZKTB6F2NY37M3Y"
+let key3 = "OeAFFmMliFG5orCUuwAKQ8l4WWFQ67YX"
 
 let symbols = ["BTC", "ETH", "XRP", "SOL", "DOT", "ADA"]
 let symbol = ""
@@ -49,7 +47,7 @@ let eod_aapl = {
 // });
 
 let rsiLevels = []
-// let Hashmap = new Map()
+let Hashmap = new Map()
 
 
 // async function fillRsiMap() {
@@ -66,16 +64,16 @@ let rsiLevels = []
 //             console.error(error);
 //         });
 //     }
-// }
+//
 
 // console.log("array")
 // console.log(rsiLevels) //нужно чтобы команда запускалась после того как for сверху сработает. Использовать async, await? хз
 
 
-function sortRsiMap(map) {
-    sortedRsiLevels = new Map([...map.entries()].sort( (a,b) => a[1] - b[1]));
-    console.log("hello", sortedRsiLevels)
-}
+// function sortRsiMap(map) {
+//     sortedRsiLevels = new Map([...map.entries()].sort( (a,b) => a[1] - b[1]));
+//     console.log("hello", sortedRsiLevels)
+// }
 
 
 // axios.request(eod_aapl).then(function (response) {
@@ -86,31 +84,55 @@ function sortRsiMap(map) {
 // 	console.error(error);
 // });
 
-const promise = new Promise((resolve, reject) => {
+// const promise = new Promise((resolve, reject) => {
+//     for (let i = 0; i < symbols.length; i++) {
+//         symbol = symbols[i]
+//         coin_info = `https://technical-analysis-api.com/api/v1/analysis/${symbol}?apiKey=${key2}`
+//         axios.request(coin_info).then(function (response) {
+//             let rsi = response.data.strategies.rsi.data[0]
+//             rsiLevels.push(rsi) //кидаем в массив значения
+//             Hashmap.set(symbols[i], rsi)
+//             console.log(Hashmap)
+//             sortRsiMap(Hashmap)
+//             return Hashmap
+//         }).catch(function (error) {
+//             console.error(error);
+//             reject(error)
+//         });
+//     }
+// })
+
+export function getRSI(){
+    let Hashmap = new Map();
     for (let i = 0; i < symbols.length; i++) {
         symbol = symbols[i]
-        coin_info = `https://technical-analysis-api.com/api/v1/analysis/${symbol}?apiKey=${key2}`
-        axios.request(coin_info).then(function (response) {
-            let rsi = response.data.strategies.rsi.data[0]
-            rsiLevels.push(rsi) //кидаем в массив значения
-            Hashmap.set(symbols[i], rsi)
-            console.log(Hashmap)
-            sortRsiMap(Hashmap)
-            return Hashmap
-        }).catch(function (error) {
-            console.error(error);
-            reject(error)
-        });
+        coin_info = `https://technical-analysis-api.com/api/v1/analysis/${symbol}?apiKey=${key2}`;
+
+        try {
+            const response = sendRSI(coin_info) 
+            // axios.request(coin_info)
+            // let rsi = response.data.strategies.rsi.data[0]
+            Hashmap.set(symbols[i], response)
+            // console.log(Hashmap)
+        } catch (err){
+            console.log(err)
+        }
     }
-})
+    return Hashmap;
+}
+
+async function sendRSI(coin_info){
+    const res = await axios.request(coin_info);
+    return res.data.strategies.rsi.data[0];
+}
 
 
 
-promise.then(res => {
-    //if not rejected, code
-    sortedRsiLevels = new Map([...Hashmap.entries()].sort( (a,b) => a[1] - b[1]));
-    console.log("hello", sortedRsiLevels)
-}).catch(err => {
-    //return false; 
-    console.log(err)
-})
+// promise.then(res => {
+//     //if not rejected, code
+//     sortedRsiLevels = new Map([...Hashmap.entries()].sort( (a,b) => a[1] - b[1]));
+//     console.log("hello", sortedRsiLevels)
+// }).catch(err => {
+//     //return false; 
+//     console.log(err)
+// })

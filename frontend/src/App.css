@@ -1,0 +1,41 @@
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+}
+
+.header-wrapper {
+  position: absolute;
+  height: 60px;
+  width: 100vw;
+  background-color: lightgray;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.header-links {
+  padding-left: 100px;
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+}
+
+.main {
+  padding-top: 60px;
+  height:80vh;
+  width: 100wh;
+  background-size: cover;
+  background-color:#FEF1F2;
+}
+
+.project-info {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+
+.project-description {
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 64px;
+}
